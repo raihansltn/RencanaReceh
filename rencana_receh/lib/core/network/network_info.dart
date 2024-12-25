@@ -37,7 +37,7 @@ Future<List<ConnectivityResult>> get connectivityResult async {
 //check the type on internet connection on changed of internet connection 
 @override
 Stream<List<ConnectivityResult>> get onConnectivityChanged => connectivity.onConnectivityChanged;
-}
+
 
 abstract class Failure {}
 // General failures
