@@ -3,20 +3,20 @@ import '../../core/app_export.dart';
 
 enum Style { bgFillOnPrimary }
 
-class CustomAppBar extends StatelessWidget implements PreferredSizeWidget{
+class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   CustomAppBar(
-    {Key? key, 
-    this.height, 
-    this.shape 
-    required this.styleType,
-    this.leadingWidth,
-    this.leading,
-    this.title,
-    this.centerTitle,
-    this.actions})
-        : super(
-            key: key,
-          );
+      {Key? key,
+      this.height,
+      this.shape,
+      this.styleType,
+      this.leadingWidth,
+      this.leading,
+      this.title,
+      this.centerTitle,
+      this.actions})
+      : super(
+          key: key,
+        );
 
   final double? height;
   final ShapeBorder? shape;
@@ -32,35 +32,36 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget{
     return AppBar(
       elevation: 0,
       shape: shape,
-      toolbarHeight: height?? 56.h,
+      toolbarHeight: height ?? 56.h,
       automaticallyImplyLeading: false,
       backgroundColor: Colors.transparent,
       flexibleSpace: _getStyle(),
-      leadingWidth: leadingWidth?? 0,
+      leadingWidth: leadingWidth ?? 0,
       leading: leading,
       title: title,
       titleSpacing: 0,
-      centerTitle: centerTitle?? false,
+      centerTitle: centerTitle ?? false,
       actions: actions,
     );
-}
-@override
+  }
+
+  @override
   Size get preferredSize => Size(
-    SizeUtils.width,
-    height?? 56.h,
-  );
-  _getStyle(){
-    switch(styleType){
-      case Style.bgFillOnPrimary:
-      return Container(
-        height: 54.h,
-        width: 374.h,
-        decoration: BoxDecoration(
-          color: theme.colorScheme.onPrimary,
-        ),
+        SizeUtils.width,
+        height ?? 56.h,
       );
+  _getStyle() {
+    switch (styleType) {
+      case Style.bgFillOnPrimary:
+        return Container(
+          height: 54.h,
+          width: 374.h,
+          decoration: BoxDecoration(
+            color: theme.colorScheme.onPrimary,
+          ),
+        );
       default:
-      return Container();
+        return Container();
     }
   }
-  }
+}
