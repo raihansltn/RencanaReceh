@@ -12,7 +12,7 @@ BaseButton(
     this.height,
     this.width,
     this.margin,
-    this.alignment
+    this.alignment, TextStyle? buttonTextStyle
   }
 )
 : super(key: key,);
