@@ -163,23 +163,19 @@ class SignInScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        CustomIconButton(
-                          height: 64.h,
-                          width: 84.h,
-                          padding: EdgeInsets.all(8.h),
-                          decoration: IconButtonStyleHelper.outlineTeal,
-                          child: CustomImageView(
-                            imagePath: ImageConstant.imgGroup94,
+                        IconButton(
+                          onPressed: () {},
+                          constraints: BoxConstraints(
+                            minHeight: 84.h,
+                            minWidth: 84.h,
                           ),
-                        ),
-                        SizedBox(width: 16.h),
-                        CustomIconButton(
-                          height: 64.h,
-                          width: 84.h,
-                          padding: EdgeInsets.all(8.h),
-                          decoration: IconButtonStyleHelper.outlineTeal,
-                          child: CustomImageView(
-                            imagePath: ImageConstant.imgGroup93,
+                          padding: EdgeInsets.all(0),
+                          icon: SizedBox(
+                            width: 84.h,
+                            height: 64.h,
+                            child: CustomImageView(
+                              imagePath: ImageConstant.imgGroup94,
+                            ),
                           ),
                         ),
                         SizedBox(width: 16.h),
@@ -194,7 +190,23 @@ class SignInScreen extends StatelessWidget {
                             width: 84.h,
                             height: 64.h,
                             child: CustomImageView(
-                              imagePath: ImageConstant.imageNotFound,
+                              imagePath: ImageConstant.imgGroup93,
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 16.h),
+                        IconButton(
+                          onPressed: () {},
+                          constraints: BoxConstraints(
+                            minHeight: 84.h,
+                            minWidth: 84.h,
+                          ),
+                          padding: EdgeInsets.all(0),
+                          icon: SizedBox(
+                            width: 84.h,
+                            height: 64.h,
+                            child: CustomImageView(
+                              imagePath: ImageConstant.imgImage4,
                             ),
                           ),
                         )
