@@ -44,6 +44,8 @@ dependencies:
   country_pickers: ^3.0.1
   responsive_grid_list: ^1.4.0
   connectivity_plus: ^6.0.4
+  sqflite: ^2.0.0+3
+path: ^1.8.1
 
 
 dev_dependencies:

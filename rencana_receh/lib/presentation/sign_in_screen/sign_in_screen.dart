@@ -7,6 +7,8 @@ import '../../widgets/app_bar/custom_app_bar.dart';
 import '../../widgets/custom_elevated_button.dart';
 import '../../widgets/custom_icon_button.dart';
 import '../../widgets/custom_text_form_field.dart';
+import '../home_screen/home_screen.dart';
+import '../sign_up_one_screen/sign_up_one_screen.dart';
 
 // ignore_for_file: must_be_immutable
 class SignInScreen extends StatelessWidget {
@@ -155,6 +157,12 @@ class SignInScreen extends StatelessWidget {
                     CustomElevatedButton(
                       text: "Sign in",
                       buttonTextStyle: CustomTextStyles.titleMediumCyan800,
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => HomeScreen()),
+                        );
+                      },
                     ),
                     SizedBox(height: 14.h),
                     _buildRowlineoneone(context),
@@ -228,10 +236,20 @@ class SignInScreen extends StatelessWidget {
                           style: CustomTextStyles.bodySmallCyan800,
                         ),
                         SizedBox(width: 10.h),
-                        Text(
-                          "Sign Up",
-                          style: CustomTextStyles.labelLargeBlack900,
-                        )
+                        InkWell(
+                          onTap: () {
+                            // Navigasi ke halaman SignUpOneScreen
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => SignUpOneScreen()),
+                            );
+                          },
+                          child: Text(
+                            "Sign Up",
+                            style: CustomTextStyles.labelLargeBlack900,
+                          ),
+                        ),
                       ],
                     ),
                     SizedBox(height: 8.h)

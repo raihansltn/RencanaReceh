@@ -7,18 +7,31 @@ import '../../widgets/app_bar/custom_app_bar.dart';
 import '../../widgets/custom_checkbox_button.dart';
 import '../../widgets/custom_elevated_button.dart';
 import '../../widgets/custom_text_form_field.dart';
+import 'package:rencana_receh/database/database_helper_user.dart'; // Import DatabaseHelper
+import 'package:rencana_receh/models/users_model.dart'; // Import model
 
 // ignore_for_file: must_be_immutable
-class SignUpOneScreen extends StatelessWidget {
+class SignUpOneScreen extends StatefulWidget {
   SignUpOneScreen({Key? key})
       : super(
           key: key,
         );
+  @override
+  _SignUpOneScreenState createState() => _SignUpOneScreenState();
+}
+
+class _SignUpOneScreenState extends State<SignUpOneScreen> {
   TextEditingController userNameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController passwordoneController = TextEditingController();
+  TextEditingController phoneNumberController = TextEditingController();
+
   bool rectangledissab = false;
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  // Create an instance of DatabaseHelper
+  final DatabaseHelperUser _databaseHelper = DatabaseHelperUser();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,63 +85,15 @@ class SignUpOneScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SizedBox(
-                      height: 154.h,
-                      width: 132.h,
-                      child: Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          Container(
-                            height: 130.h,
-                            width: 130.h,
-                            decoration: BoxDecoration(
-                              color: appTheme.blueGray100,
-                              borderRadius: BorderRadius.circular(
-                                64.h,
-                              ),
-                            ),
-                          ),
-                          Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Expanded(
-                                child: Container(
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: 18.h),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Text(
-                                        "R",
-                                        style: CustomTextStyles.poppinsCyan800,
-                                      ),
-                                      Align(
-                                        alignment: Alignment.bottomCenter,
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsets.only(bottom: 22.h),
-                                          child: Text(
-                                            "R",
-                                            style: theme.textTheme.displayLarge,
-                                          ),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
                     SizedBox(height: 72.h),
                     _buildUserName(context),
                     SizedBox(height: 20.h),
                     _buildPassword(context),
                     SizedBox(height: 20.h),
                     _buildPasswordone(context),
+                    SizedBox(height: 20.h),
+                    _buildPhoneNumberField(
+                        context), // Menambahkan widget untuk nomor telepon
                     SizedBox(height: 18.h),
                     _buildRectangledissab(context),
                     SizedBox(height: 28.h),
@@ -183,12 +148,19 @@ class SignUpOneScreen extends StatelessWidget {
   Widget _buildUserName(BuildContext context) {
     return CustomTextFormField(
       controller: userNameController,
+      
       hintText: "Insert Username",
       contentPadding: EdgeInsets.symmetric(
         horizontal: 10.h,
         vertical: 12.h,
       ),
       borderDecoration: TextFormFieldStyleHelper.outlineTealTL14,
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return "Please enter a username";
+        }
+        return null;
+      },
     );
   }
 
@@ -213,6 +185,12 @@ class SignUpOneScreen extends StatelessWidget {
       obscureText: true,
       contentPadding: EdgeInsets.all(10.h),
       borderDecoration: TextFormFieldStyleHelper.outlineTealTL14,
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return "Please enter a password";
+        }
+        return null;
+      },
     );
   }
 
@@ -238,6 +216,24 @@ class SignUpOneScreen extends StatelessWidget {
       obscureText: true,
       contentPadding: EdgeInsets.all(10.h),
       borderDecoration: TextFormFieldStyleHelper.outlineTealTL14,
+      validator: (value) {
+        if (value != passwordController.text) {
+          return "Passwords do not match";
+        }
+        return null;
+      },
+    );
+  }
+
+  Widget _buildPhoneNumberField(BuildContext context) {
+    return CustomTextFormField(
+      controller: phoneNumberController,
+      hintText: "Enter Phone Number",
+      contentPadding: EdgeInsets.symmetric(
+        horizontal: 10.h,
+        vertical: 12.h,
+      ),
+      borderDecoration: TextFormFieldStyleHelper.outlineTealTL14,
     );
   }
 
@@ -247,25 +243,66 @@ class SignUpOneScreen extends StatelessWidget {
       alignment: Alignment.centerLeft,
       child: CustomCheckboxButton(
         alignment: Alignment.centerLeft,
-        text: "By creating an account your aggree\nto our Term and Condtions",
+        text: "By creating an account your agree\nto our Term and Conditions",
         isExpandedText: true,
         value: rectangledissab,
         onChange: (value) {
-          rectangledissab = value;
+          setState(() {
+            rectangledissab = value; // Update the value and rebuild the widget
+          });
         },
       ),
     );
   }
 
-  ///Section Widget
+  /// Section Widget
   Widget _buildSignuptwo(BuildContext context) {
     return CustomElevatedButton(
       text: "Sign Up",
       buttonTextStyle: CustomTextStyles.titleMediumCyan800,
+      onPressed: () async {
+        _handleSignUp(context); // Panggil metode sign-up
+      },
     );
   }
 
-  ///Navigates back to the previous screen
+  void _handleSignUp(BuildContext context) async {
+    if (_formKey.currentState?.validate() ?? false) {
+      if (!rectangledissab) {
+        // Jika checkbox belum dicentang
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("You must agree to the terms and conditions")),
+        );
+        return;
+      }
+
+      // Buat objek User
+      User newUser = User(
+        username: userNameController.text,
+        password: passwordController.text,
+        phoneNumber: phoneNumberController
+            .text, // Ganti dengan phoneNumberController.text jika ada field Phone Number
+      );
+
+      // Simpan ke database
+      int result = await DatabaseHelperUser.instance.insertUser(newUser);
+
+      if (result > 0) {
+        // Berhasil
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("Sign-Up Successful")),
+        );
+        Navigator.pop(context); // Kembali ke halaman sebelumnya
+      } else {
+        // Gagal
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("Failed to Sign Up")),
+        );
+      }
+    }
+  }
+
+  /// Navigates back to the previous screen
   onTapArrowleftone(BuildContext context) {
     Navigator.pop(context);
   }
