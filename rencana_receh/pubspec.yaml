@@ -101,21 +101,21 @@ flutter:
 
   assets : 
           - assets/
-          - assets/images/
+          - assets/assets/images/
   fonts:
           - family: Poppins
             fonts : 
-            - asset: assets/fonts/PoppinsSemiBold.ttf
+            - asset: assets/assets/fonts/PoppinsSemiBold.ttf
               weight: 600
-            - asset: assets/fonts/PoppinsMedium.ttf
+            - asset: assets/assets/fonts/PoppinsMedium.ttf
               weight: 500
-            - asset: assets/fonts/PoppinsRegular.ttf
+            - asset: assets/assets/fonts/PoppinsRegular.ttf
               weight: 400
-            - asset: assets/fonts/PoppinsBold.ttf
+            - asset: assets/assets/fonts/PoppinsBold.ttf
               weight: 700
           - family: Lato
             fonts: 
-              - asset: assets/fonts/LatoBlact.ttf
+              - asset: assets/assets/fonts/LatoBlack.ttf
                 weight: 900
           # - assets/assets/images/RencanaRecehLogo.png
           # - assets/assets/images/google-logo.png
