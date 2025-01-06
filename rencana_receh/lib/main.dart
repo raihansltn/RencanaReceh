@@ -5,9 +5,9 @@ import 'package:rencana_receh/database/database_helper_user.dart';
 import 'core/app_export.dart';
 
 var globalMessengerKey = GlobalKey<ScaffoldMessengerState>();
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await DatabaseHelperUser.instance.database; // Initialize database
+  // await DatabaseHelperUser.instance.database; // Initialize database
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   runApp(MyApp());
 }
