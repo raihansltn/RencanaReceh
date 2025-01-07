@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'login_screen.dart';
 import 'Home_screen.dart';
+import 'saving.dart';
+import 'history.dart';
 import '../list/transaksi_list.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -25,7 +27,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Widget build(BuildContext context) {
     List<Widget> _screens = [
       HomeScreen(user: widget.user),
-      TransactionListScreen(),  // Tambahkan TransactionListScreen
+      TransactionListScreen(), // Tambahkan TransactionListScreen
       // Screen lain seperti Mahasiswa atau To Do
     ];
 
@@ -74,7 +76,29 @@ class _DashboardScreenState extends State<DashboardScreen> {
               onTap: () {
                 Navigator.pop(context);
                 setState(() {
-                  _selectedIndex = 1;  // Tab untuk melihat transaksi
+                  _selectedIndex = 1; // Tab untuk melihat transaksi
+                });
+              },
+            ),
+            Divider(),
+            ListTile(
+              title: Text('Savings'),
+              leading: Icon(Icons.list),
+              onTap: () {
+                Navigator.pop(context);
+                setState(() {
+                  _selectedIndex = 3; // Tab untuk melihat transaksi
+                });
+              },
+            ),
+            Divider(),
+            ListTile(
+              title: Text('History'),
+              leading: Icon(Icons.list),
+              onTap: () {
+                Navigator.pop(context);
+                setState(() {
+                  _selectedIndex = 2; // Tab untuk melihat transaksi
                 });
               },
             ),
@@ -91,6 +115,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
           BottomNavigationBarItem(
             icon: Icon(Icons.list),
             label: 'Transactions',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.list),
+            label: 'Saving',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.list),
+            label: 'History',
           ),
         ],
         currentIndex: _selectedIndex,

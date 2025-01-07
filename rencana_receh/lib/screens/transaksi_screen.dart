@@ -18,31 +18,28 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
 
   // Method to save transaction to database
   void _saveTransaction() async {
-  if (_formKey.currentState!.validate()) {
-    _formKey.currentState!.save();
-    final transaction = FinancialTransaction(
-      type: _type,
-      amount: _amount,
-      description: _description,
-      date: _date,
-    );
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
+      final transaction = FinancialTransaction(
+        type: _type,
+        amount: _amount,
+        description: _description,
+        date: _date,
+      );
 
-    // Log untuk memastikan data yang akan dikirim ke server
-    print('Saving transaction: $transaction'); 
+      // Log untuk memastikan data yang akan dikirim ke server
+      print('Saving transaction: $transaction');
 
-    // Panggil fungsi untuk menyimpan transaksi
-    await DatabaseHelper().insertTransaction(transaction);
+      // Panggil fungsi untuk menyimpan transaksi
+      await DatabaseHelper().insertTransaction(transaction);
 
-    // Log setelah berhasil menyimpan
-    print('Transaction saved: $transaction'); 
+      // Log setelah berhasil menyimpan
+      print('Transaction saved: $transaction');
 
-    // Kembali ke halaman sebelumnya setelah menyimpan
-    // Navigator.pop(context); 
+      // Kembali ke halaman sebelumnya setelah menyimpan
+      // Navigator.pop(context);
+    }
   }
-}
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +67,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                 },
                 decoration: InputDecoration(labelText: 'Transaction Type'),
               ),
-              
+
               // TextField for amount with validation
               TextFormField(
                 controller: _amountController,
@@ -118,9 +115,9 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                   }
                 },
               ),
-              
+
               SizedBox(height: 20),
-              
+
               // Save Button
               ElevatedButton(
                 onPressed: _saveTransaction,
