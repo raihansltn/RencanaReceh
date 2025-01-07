@@ -33,7 +33,7 @@ dependencies:
   firebase_core: ^3.8.1
   firebase_auth: ^5.3.4
   google_sign_in: ^6.1.0
-  flutter_native_splash: ^2.4.3
+  flutter_native_splash: ^2.4.4
   http: ^1.2.2
   cupertino_icons: ^1.0.8
   #shared_preferences: ^0.5.3+4
@@ -108,27 +108,27 @@ flutter:
   # see https://flutter.dev/to/font-from-package
 
   assets : 
-    - assets/
-    - assets/images/
-    - assets/images/google_logo.png
-    - assets/images/apple.png
-    - assets/images/icon_splash.png
-    - assets/images/RencanaRecehLogo.png
-  fonts:
-          - family: Poppins
-            fonts : 
-            - asset: assets/fonts/PoppinsSemiBold.ttf
-              weight: 600
-            - asset: assets/fonts/PoppinsMedium.ttf
-              weight: 500
-            - asset: assets/fonts/PoppinsRegular.ttf
-              weight: 400
-            - asset: assets/fonts/PoppinsBold.ttf
-              weight: 700
-          - family: Lato
-            fonts: 
-              - asset: assets/fonts/LatoBlack.ttf
-                weight: 900
+    - assets/assets/
+    - assets/assets/images/
+    - assets/assets/images/google_logo.png
+    - assets/assets/images/apple.png
+    - assets/assets/images/icon_splash.png
+  #   - assets/images/RencanaRecehLogo.png
+  # fonts:
+  #         - family: Poppins
+  #           fonts : 
+  #           - asset: assets/fonts/PoppinsSemiBold.ttf
+  #             weight: 600
+  #           - asset: assets/fonts/PoppinsMedium.ttf
+  #             weight: 500
+  #           - asset: assets/fonts/PoppinsRegular.ttf
+  #             weight: 400
+  #           - asset: assets/fonts/PoppinsBold.ttf
+  #             weight: 700
+  #         - family: Lato
+  #           fonts: 
+  #             - asset: assets/fonts/LatoBlack.ttf
+  #               weight: 900
           # - assets/assets/images/RencanaRecehLogo.png
           # - assets/assets/images/google-logo.png
           # - assets/assets/images/logo-apple.png

@@ -14,10 +14,10 @@ void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: const FirebaseOptions(
-        projectId: 'auth-project-flutter-444107',
-        messagingSenderId: '959178924674',
-        apiKey: 'AIzaSyAOROyBi7WUgMaVlQHT0aDpXcxj0UkwYjY',
-        appId: '1:959178924674:android:72a1285f729260a6a20a9b'),
+        projectId: 'metal-air-447106-m3',
+        messagingSenderId: '398771196913',
+        apiKey: 'AIzaSyBAmWhjIjDvReImNsDnrPDQDUGjifDLeBo',
+        appId: '1:398771196913:android:e137b63a12dec647e02a50'),
   );
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   runApp(MyApp());
@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: false,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF073C68)),
       ),
       home: StreamBuilder<User?>(
         stream: _authService.user,
