@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "398771196913",
+    "project_id": "metal-air-447106-m3",
+    "storage_bucket": "metal-air-447106-m3.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:398771196913:android:e137b63a12dec647e02a50",
+        "android_client_info": {
+          "package_name": "com.example.rencana_receh"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "398771196913-4uc291q8l47h9lfutcvqnaf57dvth93j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.rencana_receh",
+            "certificate_hash": "e3d4433e8a79de3968e3d5928a860a64107f907f"
+          }
+        },
+        {
+          "client_id": "398771196913-odnr20p26vro5007d62r04resp7fllrb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAmWhjIjDvReImNsDnrPDQDUGjifDLeBo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "398771196913-bg76qtr9cia03p6p0oaah3o42v7b047v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import '../services/auth_service.dart';
+import 'register_screen.dart';
+import 'dashboard_screen.dart';
 
 void main() {
   runApp(MyApp());
 }
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -22,7 +27,7 @@ class LoginPage extends StatelessWidget {
       body: SafeArea(
         child: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center, 
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               // Ganti Icon dengan Image.asset
               Image.asset(
@@ -30,7 +35,8 @@ class LoginPage extends StatelessWidget {
                 color: Colors.black,
                 width: 100, // Atur ukuran gambar
                 height: 100, // Atur ukuran gambar
-                fit: BoxFit.cover, // Sesuaikan gambar dengan kotak yang disediakan
+                fit: BoxFit
+                    .cover, // Sesuaikan gambar dengan kotak yang disediakan
               ),
               const SizedBox(height: 20),
               // Text
@@ -76,7 +82,7 @@ class LoginPage extends StatelessWidget {
                       // Tindakan untuk tombol Google login
                     },
                     child: Image.asset(
-                      'assets/assets/images/google-logo.png', 
+                      'assets/assets/images/google-logo.png',
                       width: 50,
                       height: 50,
                     ),
@@ -88,7 +94,7 @@ class LoginPage extends StatelessWidget {
                       // Tindakan untuk tombol Apple login
                     },
                     child: Image.asset(
-                      'assets/assets/images/logo-apple.png', 
+                      'assets/assets/images/logo-apple.png',
                       width: 50,
                       height: 50,
                     ),
@@ -100,7 +106,7 @@ class LoginPage extends StatelessWidget {
                       // Tindakan untuk tombol Facebook login
                     },
                     child: Image.asset(
-                      'assets/assets/images/logo-facebook.png', 
+                      'assets/assets/images/logo-facebook.png',
                       width: 50,
                       height: 50,
                     ),
