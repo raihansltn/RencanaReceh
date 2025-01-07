@@ -63,11 +63,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Image.asset(
-<<<<<<< HEAD
-                  'assets/images/RencanaRecehLogo.png',
-=======
-                  'assets/assets/images/uag_logo.png',
->>>>>>> a3dec80cde498a1cd1684a855d2a9e292ef77153
+                  'assets/assets/images/RencanaRecehLogo.png',
                   width: 150, // atur lebar
                   height: 150, // atur tinggi
                 ),
