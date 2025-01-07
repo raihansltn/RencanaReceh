@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:rencana_receh/screens/dashboard_screen.dart';
 import '../services/auth_service.dart';
 import 'register_screen.dart';
-import 'dashboard_screen.dart';
+import 'transaksi_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
