@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'LoginPage.dart';
+import 'login_screen.dart';
 import 'Home_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -34,7 +34,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             onPressed: () async {
               await FirebaseAuth.instance.signOut();
               Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => LoginPage()),
+                MaterialPageRoute(builder: (context) => LoginScreen()),
               );
             },
           ),
