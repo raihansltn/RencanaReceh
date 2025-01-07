@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Auth Demo',
+      title: 'Rencana Receh',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: false,

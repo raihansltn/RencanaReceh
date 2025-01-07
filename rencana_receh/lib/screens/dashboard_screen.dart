@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'login_screen.dart';
 import 'Home_screen.dart';
+import '../database/database_helper.dart';
+import '../list/transaksi_list.dart';
 
 class DashboardScreen extends StatefulWidget {
   final User user;
@@ -10,21 +12,24 @@ class DashboardScreen extends StatefulWidget {
   _DashboardScreenState createState() => _DashboardScreenState();
 }
 
+// Di dalam DashboardScreen
 class _DashboardScreenState extends State<DashboardScreen> {
   int _selectedIndex = 0;
+
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
   }
 
-  void _navigateTo(BuildContext context, Widget screen) {
-    Navigator.of(context).push(MaterialPageRoute(builder: (_) => screen));
-  }
-
   @override
   Widget build(BuildContext context) {
-    List<Widget> _screens = [HomeScreen(user: widget.user)];
+    List<Widget> _screens = [
+      HomeScreen(user: widget.user),
+      TransactionListScreen(),  // Tambahkan TransactionListScreen
+      // Screen lain seperti Mahasiswa atau To Do
+    ];
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Dashboard'),
@@ -65,23 +70,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
             ),
             Divider(),
             ListTile(
-              title: Text('Mahasiswa'),
+              title: Text('Transactions'),
               leading: Icon(Icons.list),
               onTap: () {
                 Navigator.pop(context);
                 setState(() {
-                  _selectedIndex = 1;
-                });
-              },
-            ),
-            Divider(),
-            ListTile(
-              title: Text('To Do'),
-              leading: Icon(Icons.check_box),
-              onTap: () {
-                Navigator.pop(context);
-                setState(() {
-                  _selectedIndex = 2;
+                  _selectedIndex = 1;  // Tab untuk melihat transaksi
                 });
               },
             ),
@@ -97,11 +91,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.list),
-            label: 'Mahasiswa',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.check_box),
-            label: 'To Do',
+            label: 'Transactions',
           ),
         ],
         currentIndex: _selectedIndex,
