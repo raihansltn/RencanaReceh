@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'login_screen.dart';
-import 'Home_screen.dart';
 import '../database/database_helper.dart';
 import '../models/transaksi_model.dart';
 
@@ -21,18 +18,31 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
 
   // Method to save transaction to database
   void _saveTransaction() async {
-    if (_formKey.currentState!.validate()) {
-      _formKey.currentState!.save();
-      final transaction = FinancialTransaction(
-        type: _type,
-        amount: _amount,
-        description: _description,
-        date: _date,
-      );
-      await DatabaseHelper().insertTransaction(transaction);
-      Navigator.pop(context); // Kembali ke layar sebelumnya
-    }
+  if (_formKey.currentState!.validate()) {
+    _formKey.currentState!.save();
+    final transaction = FinancialTransaction(
+      type: _type,
+      amount: _amount,
+      description: _description,
+      date: _date,
+    );
+
+    // Log untuk memastikan data yang akan dikirim ke server
+    print('Saving transaction: $transaction'); 
+
+    // Panggil fungsi untuk menyimpan transaksi
+    await DatabaseHelper().insertTransaction(transaction);
+
+    // Log setelah berhasil menyimpan
+    print('Transaction saved: $transaction'); 
+
+    // Kembali ke halaman sebelumnya setelah menyimpan
+    // Navigator.pop(context); 
   }
+}
+
+
+
 
   @override
   Widget build(BuildContext context) {

@@ -1,54 +1,46 @@
-import 'package:sqflite/sqflite.dart';
-import 'package:path/path.dart';
-import '../models/transaksi_model.dart'; 
-// Import model yang sudah dibuat
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+// import 'package:flutter/material.dart';
+// import 'package:path/path.dart';
+import '../models/transaksi_model.dart'; // Import model yang sudah dibuat
 
 class DatabaseHelper {
-  static final DatabaseHelper _instance = DatabaseHelper._internal();
-  static Database? _database;
+  static const String BASE_URL = 'http://localhost/rencana_recehsql/'; // Ganti dengan URL server PHP Anda
 
-  DatabaseHelper._internal();
+  // Fungsi untuk menyimpan transaksi ke database melalui API PHP
+  Future<void> insertTransaction(FinancialTransaction transaction) async {
+  final url = Uri.parse('$BASE_URL/ModelTransaksi.php');
+    final response = await http.post(url, body: {
+      'type': transaction.type,
+      'amount': transaction.amount.toString(),
+      'description': transaction.description,
+      'date': transaction.date.toIso8601String(),
+    });
 
-  factory DatabaseHelper() {
-    return _instance;
-  }
+    
+}
 
-  Future<Database> get database async {
-    if (_database != null) return _database!;
-    _database = await _initDb();
-    return _database!;
-  }
 
-  Future<Database> _initDb() async {
-    String path = join(await getDatabasesPath(), 'financial_app.db');
-    return await openDatabase(
-      path,
-      version: 1,
-      onCreate: (db, version) {
-        db.execute('''
-          CREATE TABLE transactions (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            type TEXT,
-            amount REAL,
-            description TEXT,
-            date TEXT
-          )
-        ''');
-      },
-    );
-  }
-
-  Future<int> insertTransaction(FinancialTransaction transaction) async {
-    final db = await database;
-    return await db.insert('transactions', transaction.toMap());
-  }
-
+  // Fungsi untuk mengambil transaksi dari database melalui API PHP
   Future<List<FinancialTransaction>> getTransactions() async {
-    final db = await database;
-    final List<Map<String, dynamic>> maps = await db.query('financial transactions');
+  final url = Uri.parse('$BASE_URL/transaksis.php');
+  final response = await http.get(url);
 
-    return List.generate(maps.length, (i) {
-    return FinancialTransaction.fromMap(maps[i]);
-  });
+  if (response.statusCode == 200) {
+    final List<dynamic> data = jsonDecode(response.body);
+
+    return data.map((item) {
+      // Pastikan ID dikonversi ke int jika perlu, dan melakukan pengecekan tipe data lainnya.
+      return FinancialTransaction.fromMap({
+        'id': int.tryParse(item['id'].toString()) ?? 0, // Mengonversi ke int, default 0 jika gagal
+        'type': item['type'] as String,  // Pastikan 'type' adalah String
+        'amount': item['amount'] is String ? double.tryParse(item['amount']) ?? 0.0 : item['amount'],  // Pastikan 'amount' adalah double
+        'description': item['description'] as String,  // Pastikan 'description' adalah String
+        'date': item['date'] as String,  // Pastikan 'date' adalah String
+      });
+    }).toList();
+  } else {
+    throw Exception('Failed to load transactions');
   }
+}
 }
