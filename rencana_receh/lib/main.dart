@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: false,
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF073C68)),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF6EB4C0)),
       ),
       home: StreamBuilder<User?>(
         stream: _authService.user,

@@ -146,7 +146,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   onPressed: _isLoading ? null : _signInWithGoogle,
                   style: OutlinedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(vertical: 16),
-                    side: const BorderSide(color: Colors.blue),
+                    side: const BorderSide(color: Color(0xFF6EB4C0)),
                   ),
                 ),
 // Opsi Daftar

@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'login_screen.dart';
 import 'Home_screen.dart';
-import 'saving.dart';
-import 'history.dart';
+import 'package:rencana_receh/screens/saving.dart';
+import 'package:rencana_receh/screens/history.dart';
+import 'package:rencana_receh/screens/pemasukan/page_pemasukan.dart';
+import 'package:rencana_receh/screens/pengeluaran/page_pengeluaran.dart';
 import '../list/transaksi_list.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -27,8 +29,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Widget build(BuildContext context) {
     List<Widget> _screens = [
       HomeScreen(user: widget.user),
-      TransactionListScreen(), // Tambahkan TransactionListScreen
-      // Screen lain seperti Mahasiswa atau To Do
+      TransactionListScreen(),
+      PagePemasukan(),
+      PagePengeluaran(),
     ];
 
     return Scaffold(
@@ -71,7 +74,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             ),
             Divider(),
             ListTile(
-              title: Text('Transactions'),
+              title: Text('History'),
               leading: Icon(Icons.list),
               onTap: () {
                 Navigator.pop(context);
@@ -82,8 +85,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
             ),
             Divider(),
             ListTile(
-              title: Text('Savings'),
-              leading: Icon(Icons.list),
+              title: Text('Income'),
+              leading: Icon(Icons.addchart),
               onTap: () {
                 Navigator.pop(context);
                 setState(() {
@@ -93,8 +96,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
             ),
             Divider(),
             ListTile(
-              title: Text('History'),
-              leading: Icon(Icons.list),
+              title: Text('Outcome'),
+              leading: Icon(Icons.add_shopping_cart),
               onTap: () {
                 Navigator.pop(context);
                 setState(() {
@@ -114,19 +117,21 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.list),
-            label: 'Transactions',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.list),
-            label: 'Saving',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.list),
             label: 'History',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.addchart_sharp),
+            label: 'Income',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.add_shopping_cart),
+            label: 'Outcome',
           ),
         ],
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
+        fixedColor: Color(0xFF6EB4C0),
+        backgroundColor: Color(0xFF016B83),
       ),
     );
   }

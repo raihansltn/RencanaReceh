@@ -7,7 +7,8 @@ class TransactionListScreen extends StatelessWidget {
   Future<List<FinancialTransaction>> _loadTransactions() async {
     // Ambil transaksi dari database
     final transactions = await DatabaseHelper().getTransactions();
-    print('Loaded transactions: $transactions');  // Log untuk memeriksa transaksi yang diambil
+    print(
+        'Loaded transactions: $transactions'); // Log untuk memeriksa transaksi yang diambil
     return transactions;
   }
 
@@ -16,7 +17,8 @@ class TransactionListScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text('Transaction List')),
       body: FutureBuilder<List<FinancialTransaction>>(
-        future: _loadTransactions(),  // Panggil _loadTransactions untuk mengambil data
+        future:
+            _loadTransactions(), // Panggil _loadTransactions untuk mengambil data
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: CircularProgressIndicator());
