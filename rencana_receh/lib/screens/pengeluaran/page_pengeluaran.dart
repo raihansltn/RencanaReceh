@@ -127,10 +127,8 @@ class _PagePengeluaranState extends State<PagePengeluaran> {
                     padding: EdgeInsets.only(top: 200),
                     child: Text(
                         'Ups, belum ada pengeluaran.\nYuk catat pengeluaran Kamu!',
-                        style: const TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black)))
+                        style:
+                            const TextStyle(fontSize: 20, color: Colors.black)))
                 : ListView.builder(
                     physics: NeverScrollableScrollPhysics(),
                     shrinkWrap: true,

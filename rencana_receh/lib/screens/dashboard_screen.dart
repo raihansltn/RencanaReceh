@@ -36,7 +36,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Dashboard'),
+        title: Text('RencanaReceh'),
         actions: [
           IconButton(
             icon: Icon(Icons.logout),

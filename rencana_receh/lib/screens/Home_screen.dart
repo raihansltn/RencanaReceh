@@ -13,7 +13,7 @@ class HomeScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Welcome, ${user.displayName ?? 'User'}!',
+              'Selamat Datang, ${user.displayName ?? 'User'}!',
               style: TextStyle(fontSize: 24),
             ),
             SizedBox(height: 20),

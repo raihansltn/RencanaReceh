@@ -127,10 +127,8 @@ class _PagePemasukanState extends State<PagePemasukan> {
                     padding: EdgeInsets.only(top: 200),
                     child: Text(
                         'Ups, belum ada pemasukan.\nYuk catat pemasukan Kamu!',
-                        style: const TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black)))
+                        style:
+                            const TextStyle(fontSize: 20, color: Colors.black)))
                 : ListView.builder(
                     physics: NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
